@@ -1,0 +1,426 @@
+@import "easystarter.scss";
+.pools {
+    @extend .m0;
+    @extend .p0;
+    @extend .w100;
+    background-image: url(../img/back2.svg), url(../img/graphic.jpeg);
+    min-height: 100vh;
+    background-size: 110%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 10px 10px;
+    transition: 0.3s;
+
+    @media (max-width: 768px) {
+        background-position: center center;
+        background-size: 150%;
+    }
+    .pools-container {
+        padding: 1em;
+        min-height: 60vh;
+    }
+
+    .btn-load {
+        @include button;
+        border: 1px solid var(--default-color-1);
+        color: black;
+        background-color: var(--default-color-1);
+        border-radius: 50px;
+        display: inline-block;
+        &:hover,
+        &.active {
+            background: transparent;
+            color: var(--default-color-1);
+        }
+        &.active:hover {
+            color: black;
+            background-color: var(--default-color-1);
+        }
+    }
+    .btn-join {
+        @include button;
+        background: transparent;
+        border-radius: 50px;
+        border: 1px solid var(--default-color-2);
+        color: var(--default-color-2);
+        display: inline-block;
+        &.disable {
+            opacity: 0.5;
+        }
+        &:not(.disable) {
+            &:hover,
+            &.active {
+                background-color: var(--default-color-2);
+                color: white;
+                &:hover {
+                    box-shadow: 1px 1px 6px rgb(149, 3, 74);
+                }
+            }
+        }
+    }
+    .btn-max {
+        cursor: pointer;
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid var(--default-color-2);
+        color: var(--default-color-2);
+        transition: 0.3s;
+        user-select: none;
+        margin-top: 10px;
+        &:hover {
+            background-color: var(--default-color-2);
+            box-shadow: 1px 3px 5px rgb(254, 73, 160);
+            color: white;
+        }
+    }
+
+    .pool-icon {
+        background-color: #0f0f23;
+        width: 50px;
+        border: 3px solid;
+        border-color: white #0f0f23 #0f0f23;
+        height: 50px;
+        border-radius: 10px;
+        padding: 5px;
+    }
+    .search-panel {
+        position: relative;
+        color: var(--font-white-color);
+        padding: 1.5em auto;
+        .search-box {
+            position: relative;
+            .input-search {
+                background-color: rgba(0, 0, 0, 0.5);
+                border-radius: 50px;
+                border: 2px solid rgba($color: #fff, $alpha: 0.6);
+                width: 100%;
+                min-width: 350px;
+                color: rgba($color: #fff, $alpha: 0.9);
+                margin: 0;
+                &::placeholder {
+                    color: rgba($color: #fff, $alpha: 0.7);
+                }
+            }
+            .search-icon {
+                position: absolute;
+                right: 18px;
+                cursor: pointer;
+                &:nth-child(2) {
+                    top: calc(50% - 10px);
+                }
+                &:nth-child(3) {
+                    top: calc(50% - 8px);
+                    display: none;
+                }
+            }
+            &.active {
+                :nth-child(2) {
+                    display: none;
+                }
+                :nth-child(3) {
+                    display: block;
+                }
+            }
+            + .search-list {
+                @include absolute;
+                transition: opacity 0.2s;
+                max-height: 70vh;
+                overflow-y: auto;
+                opacity: 0;
+                overflow-x: hidden;
+                background: #140c2b;
+                box-shadow: 1px 3px 3px #4e1986;
+                padding: 1em;
+                border-radius: 3px;
+                margin: 10px 12px;
+                width: calc(100% - 20px);
+                scrollbar-width: 10px;
+                scrollbar-color: #506587 #542a54;
+
+                &::-webkit-scrollbar {
+                    width: 10px;
+                    height: 10px;
+                }
+
+                &::-webkit-scrollbar-track {
+                    background: #6f4492;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    background-color: #3b2a80;
+                    border-radius: 1px;
+                }
+
+                &.active {
+                    opacity: 1;
+                    z-index: 3;
+                }
+                .no-result {
+                    color: var;
+                    display: none;
+                    &.active {
+                        display: block;
+                    }
+                }
+                .search-item {
+                    @include transition;
+                    display: flex;
+                    cursor: pointer;
+                    padding: 1em;
+                    align-items: center;
+                    border-radius: 4px;
+                    &:hover {
+                        background-color: rgba(255, 255, 255, 0.1);
+                    }
+                    img {
+                        width: 30px;
+                        height: 30px;
+                        border-radius: 50%;
+                        margin: 0 10px;
+                    }
+                    .token-name {
+                        @extend .no-select;
+                    }
+                    .token-unit {
+                        margin-left: 5px;
+                        font-size: 0.9rem;
+                    }
+                }
+            }
+        }
+    }
+    .category {
+        color: var(--font-dark-color);
+    }
+
+    .pool-card {
+        border-radius: 5px;
+        display: block;
+        position: relative;
+        overflow: hidden;
+        background-color: #0f0f23;
+        color: var(--font-white-color);
+        user-select: none;
+        margin: 1em auto;
+        transition: 0.2s;
+        &:hover {
+            box-shadow: 0px 2px 7px #2b2b84;
+            transform: translateY(-10px);
+        }
+        &.gold{
+            border: 3px solid rgb(219, 219, 5);
+            border-top: none;
+            border-radius: 10px;
+            box-shadow: 1px 2px 5px rgb(107, 107, 15);
+        }
+        .blur-container {
+            position: absolute;
+            height: 50%;
+            width: 100%;
+            right: 0%;
+            bottom: 0%;
+            z-index: 1;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            overflow: hidden;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+            border-radius: 10px;
+            &:hover {
+                .blur {
+                    transform: translate3d(0px, 0px, 0px) scale3d(1.6, 1.4, 1) rotateX(180deg) rotateY(0deg)
+                        rotateZ(0deg) skew(0deg, 0deg) translateY(-140px);
+                }
+            }
+        }
+        .blur {
+            width: 120px;
+            transition: 0.3s;
+            height: 100px;
+            margin-top: -20px;
+            border-radius: 50%;
+            background-image: linear-gradient(45deg, #893af3, #00ffff);
+            -webkit-filter: blur(50px);
+            filter: blur(50px);
+            transform: translate3d(0px, 0px, 0px) scale3d(1.6, 1.2, 1) rotateX(180deg) rotateY(0deg) rotateZ(0deg)
+                skew(0deg, 0deg) translateY(-160px);
+            transform-style: preserve-3d;
+        }
+        .pool-img {
+            width: 100%;
+            top: 0;
+            left: 0;
+        }
+        
+        .close {
+            background-color: var(--default-back-color);
+            padding: 5px;
+            color: #eee;
+            font-size: 0.8rem;
+            border-radius: 5px 0 0 5px;
+        }
+    }
+    .pool-details-card {
+        border-radius: 5px;
+        display: block;
+        position: relative;
+        overflow: hidden;
+        padding: 2em;
+        margin-top: 1em;
+        background-color: rgba(13, 2, 26, 0.9);
+        color: var(--font-dark-color);
+        .pool-img {
+            width: 100%;
+            top: 0;
+            left: 0;
+        }
+        .type {
+            position: absolute;
+            top: 15px;
+            right: 10px;
+            padding: 5px 10px;
+            border-radius: 20px;
+            background-color: #fb0075d5;
+            &.active {
+                background-color: #fb0075d5;
+                color: white;
+            }
+            &.ended {
+                background-color: #00f3fbd5;
+                color: black;
+            }
+            &.upcoming {
+                background-color: #00fb19d5;
+                color: white;
+            }
+            &.saled {
+                background-color: #6a035cd5;
+                color: white;
+            }
+        }
+        .pool-icon {
+            background-color: #0f0f23;
+            width: 80px;
+            border: 3px solid;
+            border-color: white #0f0f23 #0f0f23;
+            height: 80px;
+            border-radius: 10px;
+            padding: 5px;
+            margin-left: 20px;
+        }
+        .close {
+            background-color: var(--default-back-color);
+            padding: 5px;
+            color: #eee;
+            font-size: 0.8rem;
+            border-radius: 5px 0 0 5px;
+        }
+        .bb1 {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            p {
+                &:nth-child(2) {
+
+                    padding-left: 2em;
+                    @media (max-width: 768px) {
+                        padding-left: 8px;
+                        overflow: hidden;
+                    }
+                }
+            }
+        }
+    }
+    .step-bar {
+        .number {
+            border-radius: 50%;
+            font-size: 1.1em;
+            padding: 0.5em 0.8em;
+            display: inline-block;
+            color: var(--default-color-1);
+            background-color: transparent;
+            border: 1px solid var(--default-color-1);
+            cursor: pointer;
+            transition: 0.2s;
+            user-select: none;
+            &:hover {
+                transform: scale(1.1);
+                background-color: var(--default-color-1);
+                color: black;
+            }
+        }
+        .line{
+            border-top: 1px solid #2aaeb5;
+            width: calc(100% );
+            height: 1px;
+            display: block;
+            transform: translateY(-1.3em) translateX(calc(-50% - 1.5rem));
+        }
+        
+        @media(max-width:768px){
+            .line{
+                transform: translateY(-1.3em) translateX(calc(-50% - 0.5em));
+                width: 50%;
+            }
+            div:nth-child(3){
+                display: none;
+            }
+        }
+        
+        &.active{
+            .line{
+                border-top: 3px solid #00eefb;
+            }
+            .number{
+                background-color: var(--default-color-1);
+                color: black;
+            }
+        }
+    }
+    .step-card{
+        display: none;
+        &.active{
+            display: block;
+        }
+    }
+ 
+    
+    @media (max-width: 768px) {
+        .search-panel,
+        .title {
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .category {
+            text-align: center;
+        }
+        .pool-modal-details {
+            display: none;
+        }
+        .step-bar>div:nth-child(2){
+            display: none;
+        }
+    }
+
+    .upload-image-panel{
+        border-radius: 5px;
+        border: 2px dashed grey;
+        width: 100px;
+        height: 100px;
+        cursor: pointer;
+        &:hover{
+            border: 3px dashed #999;
+        }
+        img{
+            width: 100%;
+            height: 100%;
+        }
+    }
+}

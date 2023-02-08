@@ -1,0 +1,368 @@
+@import "index.scss";
+
+.text-primary {
+    color: var(--default-color-2) !important;
+}
+.text-light {
+    color: var(--font-white-color) !important;
+}
+.text-black {
+    color: black !important;
+}
+.text-dark {
+    color: var(--font-dark-color) !important;
+}
+
+@mixin button {
+    @extend .pointer;
+    @extend .flex;
+    @extend .bold;
+    @include transition;
+    @extend .center;
+    @extend .middle;
+    border-radius: 10px;
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    outline: none;
+    margin: 5px;
+}
+
+header {
+    width: 100%;
+    padding: 1.5em 0;
+    .header-menu {
+        @include white-color;
+        @include relative;
+        @extend .pointer;
+        @extend .no-select;
+        @include transition;
+        margin: 0 1.1rem;
+        font-size: var(--font-size-h5);
+        z-index: 4;
+        > span {
+            display: inline-block;
+            img {
+                @include relative;
+                @include transition;
+                width: 0.9rem;
+                margin: 5px 5px 0;
+                opacity: 0;
+            }
+        }
+        &:hover,
+        &.active {
+            color: var(--default-color-1);
+            > span {
+                img {
+                    opacity: 100;
+                }
+            }
+        }
+    }
+    .side-menu {
+        @include button;
+        display: none;
+        padding: 0;
+        img {
+            width: 25px;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+    @media (max-width: 768px) {
+        .wallet-btn,
+        .header-menu,
+        .wallet-status {
+            display: none;
+        }
+        .side-menu {
+            display: block;
+        }
+    }
+}
+.logo {
+    @extend .no-border;
+    width: 250px;
+    height: auto;
+    padding: 0.5em;
+
+    @media (max-width: 768px) {
+        text-align: center;
+        width: 220px;
+    }
+}
+
+.social-link {
+    align-items: center;
+    align-content: center;
+    display: flex;
+    font-size: 1.2rem;
+    margin: 1em 0;
+    svg {
+        margin-right: 10px;
+    }
+    &:hover {
+        color: var(--default-color-2);
+    }
+}
+footer {
+    padding: 2em;
+    border-top: 1px solid var(--default-color-2);
+    background-color: rgba(0, 0, 0, 0.6);
+    .footer-title {
+        margin: 1em auto;
+    }
+    @media (max-width: 768px) {
+        text-align: center;
+        .social-link {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+}
+
+.btn-submit{
+    background: #39104d;
+    border-radius: 50px;
+    border: 1px solid var(--default-color-2);
+    color: var(--default-color-2);
+    display: inline-block;
+    font-size: 1em;
+    padding: 0.5em 1em;
+    margin: 2em;
+    cursor: pointer;
+    &:disabled {
+        opacity: 0.5;
+    }
+    &:not(:disabled) {
+        &:hover,
+        &.active {
+            background-color: var(--default-color-2);
+            color: white;
+        }
+    }
+}
+
+.wallet-btn {
+    @extend .text-light;
+    @include button;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.9rem;
+    border: 1px solid var(--font-dark-color);
+    padding: 1em;
+    @media (max-width: 768px) {
+        margin: 0 auto;
+    }
+    &:hover {
+        border: 1px solid var(--default-color-1);
+        color: var(--default-color-1) !important;
+    }
+    &.active {
+        display: block;
+    }
+}
+
+
+.type {
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background-color: #fb0075d5;
+    &.active {
+        background-color: #fb0075d5;
+        color: white;
+    }
+    &.ended {
+        background-color: #00f3fbd5;
+        color: black;
+    }
+    &.upcoming {
+        background-color: #00fb19d5;
+        color: white;
+    }
+    &.saled {
+        background-color: #6a035cd5;
+        color: white;
+    }
+}
+
+.disabled-link {
+    pointer-events: none;
+    opacity: 0.3
+}
+
+.wallet-status {
+    @include button;
+    @extend .no-select;
+    padding: 0.7rem 1.5rem;
+    color: var(--default-color-2);
+    background-color: #2e0e3f;
+    span {
+        margin: 0 5px;
+        padding: 10px 12px;
+        border-radius: 50px;
+        background-color: #15061d;
+        color: var(--font-white-color);
+    }
+    &:hover {
+        background-color: #39104d;
+    }
+    &.active {
+        display: block;
+    }
+}
+.wallet-address {
+    border-radius: 50px;
+    background-color: #2e0e3f;
+    padding: 1em 2em;
+    display: flex;
+    color: var(--default-color-2);
+    align-items: center;
+    margin: 1em;
+    overflow: hidden;
+    label {
+        width: 100%;
+        overflow: hidden;
+    }
+    span {
+        margin-left: 1em;
+        cursor: pointer;
+        color: #eee;
+        &:hover {
+            color: var(--default-color-2);
+        }
+    }
+}
+
+.btn-join {
+    @include button;
+    background: transparent;
+    border-radius: 50px;
+    border: 1px solid var(--default-color-2);
+    color: var(--default-color-2);
+    display: inline-block;
+    &:disabled {
+        opacity: 0.5;
+    }
+    &:not(:disabled) {
+        &:hover,
+        &.active {
+            background-color: var(--default-color-2);
+            color: white;
+        }
+    }
+}
+.side-menu-panel {
+    @include fixed;
+    @include transition;
+    transition: 0.3s;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 2em;
+    background-color: #291b60;
+    width: 400px;
+    z-index: 1500;
+    right: -105%;
+    @media (max-width: 768px) {
+        width: 100%;
+    }
+    &.show {
+        right: 0;
+    }
+    &.hide {
+        right: -105%;
+    }
+    .header-bar {
+        padding: 1em;
+        img {
+            width: 200px;
+        }
+        .btn-close {
+            @extend .pointer;
+            font-size: var(--font-size-h2);
+            &:hover {
+                color: var(--default-light-color) !important;
+            }
+        }
+    }
+    .side-menu {
+        font-size: 2rem;
+        padding: 1em;
+        display: block;
+        text-align: center;
+    }
+}
+.modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 2222;
+    backdrop-filter: blur(1px);
+    .modal-container {
+        position: absolute;
+        top:10%;
+        left: 5%;
+        width: 90%;
+        height: 80%;
+        background-color: #241747;
+        border-radius: 10px;
+        padding: 3em 2em;
+        box-shadow: 4px 4px 15px rgba(168, 168, 168, 0.15);
+        overflow-y: auto;
+        .close-btn {
+            position: absolute;
+            top: 1.5em;
+            right: 1.5em;
+            cursor: pointer;
+            padding: 0.8em 1em;
+            transition: 0.3s;
+            border-radius: 50%;
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.2);
+            }
+            @media (max-width: 768px) {
+                font-size: 0.7em;
+                top: 1em;
+                right: 1em;
+            } 
+        }
+    }
+}
+
+.Toastify__toast-container{
+    z-index: 11112;
+}
+
+.whitelist-table{
+    max-height: 400px;
+    overflow-y: auto;
+    border-radius: 5px;
+    margin: 10px;
+    overflow-x: hidden;
+    color: #ddd;
+    .whitelist-row{
+        padding: 1em;
+        cursor: pointer;
+        border-bottom: 1px solid #444;
+        background-color: #15061d2b;
+        &:hover{
+            background-color: #15061d;
+        }
+        div:nth-child(1){
+            width: 80%;
+            padding-left: 1.5em;
+            overflow: hidden;
+        }
+        div:nth-child(2){
+            padding: 0 5px;
+        }
+    }
+}

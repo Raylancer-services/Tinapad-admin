@@ -1,0 +1,48 @@
+
+    .card {
+            border-radius: 10px;
+            background-color: rgba(13, 2, 26, 0.7);
+            padding: 1em;
+            margin: 0.5em ;
+            position: relative;
+            color: var(--font-dark-color);
+            &.border {
+                border: 2px dotted var(--default-color-2);
+            }
+            @media (max-height: 768px) {
+                padding: 1em;
+            }
+            .header-row {
+                background-color: rgba(0, 0, 0, 0.764);
+                @media (max-height: 768px) {
+                    display: none;
+                }
+            }   
+            .history-row {
+                background-color: rgba(0, 0, 0, 0.264);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+                margin: 1em;
+                cursor: pointer;
+                border-radius: 5px;
+                padding: 0.1em 1em;
+                transition: 0.3s;
+                &:hover {
+                    background-color: rgba(0, 0, 0, 0.408);
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+                }
+                :nth-child(1) {
+                    img {
+                        width: 50px;
+                        height: auto;
+                    }
+                }
+                @media (max-height: 768px) {
+                    margin: 0;
+                    * {
+                        text-align: center;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                }
+            }
+        }
